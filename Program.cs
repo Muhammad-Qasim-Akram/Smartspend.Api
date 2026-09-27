@@ -3,13 +3,11 @@ using Smartspend.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseNpgsql(connectionString)
-}
-);
+builder.AddSmartSpendDb();
+
 
 var app = builder.Build();
+app.MigrateDb();
 app.Run();
 
 
