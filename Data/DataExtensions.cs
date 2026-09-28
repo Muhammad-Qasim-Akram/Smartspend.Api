@@ -23,10 +23,10 @@ public static class DataExtensions
                 {
                     context.Set<Category>().AddRange(
                         new Category { Name = "Food" , IsDefault = true },
-                        new Category { Name = "Transportation", IsDefault = true },
+                        new Category { Name = "Transportation" , IsDefault = true },
                         new Category { Name = "Entertainment", IsDefault = true },
-                        new Category { Name = "Utilities",IsDefault = true },
-                        new Category { Name = "Healthcare",IsDefault = true  },
+                        new Category { Name = "Utilities" , IsDefault = true },
+                        new Category { Name = "Healthcare" , IsDefault = true  },
                         new Category { Name = "Education" , IsDefault = true}
                     );
                     context.SaveChanges();
