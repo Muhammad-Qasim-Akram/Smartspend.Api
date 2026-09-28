@@ -19,8 +19,8 @@ public static class DataExtensions
          builder.Services.AddNpgsql<AppDbContext>(connString,
              optionsAction: options => options.UseSeeding((context, _) =>
              {
-                 if(!context.Set<Category>().Any())
-                 {
+                if(!context.Set<Category>().Any())
+                {
                     context.Set<Category>().AddRange(
                         new Category { Name = "Food" , IsDefault = true },
                         new Category { Name = "Transportation", IsDefault = true },
@@ -30,15 +30,8 @@ public static class DataExtensions
                         new Category { Name = "Education" , IsDefault = true}
                     );
                     context.SaveChanges();
-                 };
-                
+                };             
              }
-
-        
-         )
-         );
+         ));
     }
-
-
-    
 }
