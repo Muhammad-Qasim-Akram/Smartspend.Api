@@ -1,6 +1,6 @@
 namespace Smartspend.Api.Dtos.Expenses;
 
-public class CreateExpenseDto
+public record CreateExpenseDto
 {
     
 }

@@ -1,6 +1,6 @@
 namespace Smartspend.Api.Dtos.Reports;
 
-public class MonthlyReportDto
+public record MonthlyReportDto
 {
     
 }

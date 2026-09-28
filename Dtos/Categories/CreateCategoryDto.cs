@@ -1,6 +1,6 @@
 namespace Smartspend.Api.Dtos.Categories;
 
-public class CreateCategoryDto
+public record CreateCategoryDto
 {
     
 }

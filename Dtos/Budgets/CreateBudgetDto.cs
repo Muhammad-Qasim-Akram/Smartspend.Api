@@ -1,6 +1,6 @@
 namespace Smartspend.Api.Dtos.Budgets;
 
-public class CreateBudgetDto
+public record CreateBudgetDto
 {
     
 }
