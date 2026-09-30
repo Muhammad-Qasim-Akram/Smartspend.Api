@@ -4,6 +4,7 @@ public record BudgetDto
 (
     int Id,
     decimal Amount,
+    string CategoryName,
     DateOnly StartDate,
     DateOnly EndDate
 );
