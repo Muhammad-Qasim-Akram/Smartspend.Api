@@ -1,8 +1,8 @@
 namespace Smartspend.Api.Dtos.Reports;
 
-public record WeeklyReportDto
+public record ReportDto
 (
-   decimal Amount,
+   decimal TotalSpent,
    DateOnly StartDate,
    DateOnly EndDate,
    List<CategorySpendingDto> CategoryBreakdown
