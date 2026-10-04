@@ -1,5 +1,5 @@
 using Smartspend.Api.Dtos.Auth;
-namespace SmartSpend.Api.Interface;
+namespace SmartSpend.Api.Interfaces;
 public interface IAuthService
 {
     Task<UserDto> RegisterAsync(RegisterDto dto);
