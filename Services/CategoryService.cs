@@ -22,6 +22,7 @@ public class CategoryService: ICategoryService
                 .Select(c => new CategoryDto(c.Id , c.Name , c.IsDefault))
                 .ToListAsync();
     }
+<<<<<<< HEAD
 
     public async Task<CategoryDto?> GetByIdAsync(int id,int userId)
     {
@@ -32,4 +33,6 @@ public class CategoryService: ICategoryService
     }
 
     public async Task<
+=======
+>>>>>>> 5ca0ab577f1c266440ce426c38a58c61da4961eb
 }
