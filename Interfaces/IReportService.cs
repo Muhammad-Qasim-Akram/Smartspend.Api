@@ -1,4 +1,4 @@
-namespace SmartSpend.Api.Interface
+namespace SmartSpend.Api.Interfaces;
 
 public interface IReportService
 {}
