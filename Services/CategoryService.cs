@@ -45,5 +45,20 @@ public class CategoryService: ICategoryService
         return new CategoryDto(category.Id, category.Name, category.IsDefault);
     }
 
-    public async Task
+    public async Task<CategoryDto?> UpdateAsync(int id, int userId, UpdateCategoryDto dto)
+    {
+        var oldcategory = await _dbcontext.Set<Category>().FirstOrDefaultAsync(c => (c.UserId == userId && c.Id == id));
+        
+        if(oldcategory is null) return null;
+        oldcategory.Name = dto.Name;
+        await _dbcontext.SaveChangesAsync();
+
+        return new CategoryDto(oldcategory.Id, oldcategory.Name, oldcategory.IsDefault);
+    }
+
+    public async Task<bool> DeleteAsync(int id, int userId)
+    {   
+        var row = await _dbcontext.Set<Category>().Where(c => (c.Id == id || c.UserId == userId)).ExecuteDeleteAsync();
+        return row > 0;
+    }
 }
