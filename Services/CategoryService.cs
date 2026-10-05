@@ -58,7 +58,7 @@ public class CategoryService: ICategoryService
 
     public async Task<bool> DeleteAsync(int id, int userId)
     {   
-        var row = await _dbcontext.Set<Category>().Where(c => (c.Id == id || c.UserId == userId)).ExecuteDeleteAsync();
+        var row = await _dbcontext.Set<Category>().Where(c => (c.Id == id && c.UserId == userId)).ExecuteDeleteAsync();
         return row > 0;
     }
 }
