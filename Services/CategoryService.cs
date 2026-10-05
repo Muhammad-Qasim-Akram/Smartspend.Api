@@ -22,7 +22,6 @@ public class CategoryService: ICategoryService
                 .Select(c => new CategoryDto(c.Id , c.Name , c.IsDefault))
                 .ToListAsync();
     }
-<<<<<<< HEAD
 
     public async Task<CategoryDto?> GetByIdAsync(int id,int userId)
     {
@@ -32,7 +31,19 @@ public class CategoryService: ICategoryService
                 .FirstOrDefaultAsync();
     }
 
-    public async Task<
-=======
->>>>>>> 5ca0ab577f1c266440ce426c38a58c61da4961eb
+    public async Task<CategoryDto> CreateAsync(int userId, CreateCategoryDto dto)
+    {
+         var category = new Category
+        {
+            Name = dto.Name,
+            UserId = userId,
+            IsDefault = false
+        };
+        _dbcontext.Set<Category>().Add(category);
+        await _dbcontext.SaveChangesAsync();
+
+        return new CategoryDto(category.Id, category.Name, category.IsDefault);
+    }
+
+    public async Task
 }
