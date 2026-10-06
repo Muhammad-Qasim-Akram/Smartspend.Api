@@ -5,7 +5,7 @@ public interface IBudgetService
     Task<List<BudgetDto>> GetAllAsync(int userId);
     Task<BudgetDto?> GetByIdAsync(int id,int userId);
 
-    Task<BudgetDto> CreateAsync(CreateBudgetDto dto,int userId);
-    Task<BudgetDto>  UpdateAsync(int id, UpdateBudgetDto dto,int userId);
+    Task<BudgetDto?> CreateAsync(int userId, CreateBudgetDto dto);
+    Task<BudgetDto?>  UpdateAsync(int id,int userId, UpdateBudgetDto dto);
     Task<bool> DeleteAsync(int id,int userId);
 }
