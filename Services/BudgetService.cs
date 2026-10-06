@@ -34,7 +34,7 @@ public class BudgetService : IBudgetService
     public async Task<BudgetDto?> CreateAsync(int userId,CreateBudgetDto dto)
     {
         var category = await _dbcontext.Set<Category>()
-                        .FirstOrDefaultAsync(c => c.UserId == userId && (c.Id == dto.CategoryId || c.IsDefault));
+                        .FirstOrDefaultAsync(c => c.Id == dto.CategoryId && (c.UserId == userId  || c.IsDefault));
                         
         if(category is null)return null;
 
