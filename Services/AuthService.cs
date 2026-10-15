@@ -7,6 +7,7 @@ namespace Smartspend.Api.Services;
 public class AuthService : IAuthService
 {
     private readonly AppDbContext _dbcontext;
+    private readonly IConfiguration _configuration;
 
     public AuthService(AppDbContext dbContext)
     {
