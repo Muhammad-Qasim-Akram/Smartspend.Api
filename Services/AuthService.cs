@@ -61,12 +61,12 @@ public class AuthService : IAuthService
             Email = dto.Email,
             Password = hashedPw
           };
-            await  _dbcontext.Set<User>().AddAsync(user);
+            _dbcontext.Set<User>().Add(user);
             await _dbcontext.SaveChangesAsync();
 
-            var Token = GenerateToken(user);
+            var token = GenerateToken(user);
 
-            return new  UserDto(user.Id,user.FirstName,user.LastName,user.Email,Token);
+            return new  UserDto(user.Id,user.FirstName,user.LastName,user.Email,token);
     }
 
     public async Task<UserDto> LoginAsync(LoginDto dto)
