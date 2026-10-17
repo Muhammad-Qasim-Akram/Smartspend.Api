@@ -21,19 +21,20 @@ public class ReportService : IReportService
                         .Where(e => e.UserId == userId &&
                                e.Date >= dto.StartDate &&
                                e.Date <= dto.EndDate)
+                               .Include(e => e.Category)
                                .ToListAsync();
         
         var categoryBreakdown = expenses
                                .GroupBy(e => e.Category!.Name)
                                .Select(g => new CategorySpendingDto(
                                 g.Key,
-                                g.Sum(g => g.Amount),
+                                g.Sum(e => e.Amount),
                                 g.Count()
                                ))
                                .ToList();
 
-        var TotalSpending = expenses.Sum(e => e.Amount);
+        var totalSpending = expenses.Sum(e => e.Amount);
 
-       return new ReportDto(TotalSpending, dto.StartDate, dto.EndDate, categoryBreakdown );    
+       return new ReportDto(totalSpending, dto.StartDate, dto.EndDate, categoryBreakdown );    
     }
 }
