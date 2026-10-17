@@ -71,6 +71,15 @@ public class AuthService : IAuthService
 
     public async Task<UserDto> LoginAsync(LoginDto dto)
     {
-        
+        var user = await  _dbcontext.Set<User>()
+                          .FirstOrDefaultAsync(l => l.Email == dto.Email);
+        if(user is null) throw new InvalidOperationException("Email is not Registered");
+
+        var pass = BCrypt.Net.BCrypt.Verify(dto.Password, user.Password);
+        if(pass is false) throw new InvalidOperationException("Password is Incorrect");
+
+        var token = GenerateToken(user);
+        return new UserDto(user.Id,user.FirstName,user.LastName,user.Email,token);
+
     }
 }
