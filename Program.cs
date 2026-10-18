@@ -9,5 +9,3 @@ builder.AddSmartSpendDb();
 var app = builder.Build();
 app.MigrateDb();
 app.Run();
-
-
