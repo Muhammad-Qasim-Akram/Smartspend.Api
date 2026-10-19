@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Smartspend.Api.Data;
 using Smartspend.Api.Dtos.Expenses;
-using Smartspend.Api.Interfaces;
+using SmartSpend.Api.Interfaces;
 using Smartspend.Api.Models;
 
 namespace Smartspend.Api.Services;

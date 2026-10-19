@@ -1,5 +1,5 @@
 using Smartspend.Api.Dtos.Expenses;
-namespace Smartspend.Api.Interfaces;
+namespace SmartSpend.Api.Interfaces;
 
 public interface IExpenseService
 {
