@@ -1,10 +1,12 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Smartspend.Api.Dtos.Expenses;
 using SmartSpend.Api.Interfaces;
 
 namespace Smartspend.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ExpenseController : ControllerBase
@@ -30,13 +32,14 @@ public class ExpenseController : ControllerBase
         }
     }
 
-    [HttpGet/{id}]
+    [HttpGet("{id}")]
     public async Task<ActionResult<ExpenseDto>> GetById(int id)
     {
         try
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             var result = await _expenseService.GetByIdAsync(id, userId);
+            if(result is null) return NotFound();
             return Ok(result);
         }
         catch(InvalidOperationException ex)
@@ -59,13 +62,14 @@ public class ExpenseController : ControllerBase
         }    
     }
     
-    [HttpPut]
+    [HttpPut("{id}")]
     public async Task<ActionResult<ExpenseDto>> UpdateExpense(int id,UpdateExpenseDto dto)
     { 
         try
         {
           var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
           var result = await _expenseService.UpdateAsync(id,userId,dto);
+          if(result is null) return NotFound();
           return Ok(result);
         }
         catch(InvalidOperationException ex)
@@ -75,7 +79,7 @@ public class ExpenseController : ControllerBase
 
     }
     
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<ActionResult<bool>> DeleteExpense(int id)
     {
         try
