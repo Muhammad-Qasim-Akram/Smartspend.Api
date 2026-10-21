@@ -2,7 +2,6 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Smartspend.Api.Dtos.Budgets;
-using Smartspend.Api.Dtos.Expenses;
 using SmartSpend.Api.Interfaces;
 
 namespace Smartspend.Api.Controllers;
@@ -37,7 +36,7 @@ public class BudgetsController : ControllerBase
         return Ok(result);
     }
     [HttpPost]
-    public async Task<ActionResult<BudgetDto>> CreateExpense(CreateBudgetDto dto)
+    public async Task<ActionResult<BudgetDto>> CreateBudget(CreateBudgetDto dto)
     {
         var userId = GetUserId();
         var result = await _budgetService.CreateAsync(userId,dto);
@@ -46,11 +45,11 @@ public class BudgetsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<BudgetDto>> UpdateCategory(int id,UpdateBudgetDto dto)
+    public async Task<ActionResult<BudgetDto>> UpdateBudget(int id,UpdateBudgetDto dto)
     {
         var userId = GetUserId();
         var result = await _budgetService.UpdateAsync(id,userId,dto);
-        if(result is null) return NotFound();
+        if(result is null) throw new InvalidOperationException("Invalid Budget");
         return Ok(result);
     }
     

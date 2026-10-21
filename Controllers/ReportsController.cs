@@ -18,8 +18,8 @@ public class ReportsController : ControllerBase
         _reportService = reportService;
     }
 
-    [HttpPost] 
-    public async Task<ActionResult<ReportDto>> Reports(ReportRequestDto dto)
+    [HttpGet] 
+    public async Task<ActionResult<ReportDto>> Reports([FromQuery] ReportRequestDto dto)
     {
         if (dto.EndDate < dto.StartDate)
         return BadRequest("End date must be on or after start date.");

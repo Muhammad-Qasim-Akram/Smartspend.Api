@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 using Smartspend.Api.Dtos.Categories;
 using SmartSpend.Api.Interfaces;
 
@@ -19,7 +18,7 @@ public class CatergoriesController : ControllerBase
         _categoryService = categoryService;
     }
 
-    public int GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+    private int GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
 
     [HttpGet]
     public async Task<ActionResult<List<CategoryDto>>> GetAllCategory()
