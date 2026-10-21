@@ -9,10 +9,10 @@ namespace Smartspend.Api.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/[controller]")]
-public class ExpenseController : ControllerBase
+public class ExpensesController : ControllerBase
 {
     private readonly IExpenseService _expenseService;
-    public ExpenseController(IExpenseService expenseService)
+    public ExpensesController(IExpenseService expenseService)
     {
         _expenseService = expenseService;
     }
