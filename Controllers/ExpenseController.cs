@@ -17,12 +17,14 @@ public class ExpenseController : ControllerBase
         _expenseService = expenseService;
     }
     
+    private int  GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+
     [HttpGet]
     public async Task<ActionResult<List<ExpenseDto>>> GetAllExpenses()
     {
         try
         {
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            var userId = GetUserId();
             var result = await _expenseService.GetAllAsync(userId);
             return Ok(result);
         }
@@ -37,7 +39,7 @@ public class ExpenseController : ControllerBase
     {
         try
         {
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            var userId = GetUserId();
             var result = await _expenseService.GetByIdAsync(id, userId);
             if(result is null) return NotFound();
             return Ok(result);
@@ -52,9 +54,10 @@ public class ExpenseController : ControllerBase
     {
         try
         {
-            var userId =  int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            var userId =  GetUserId();
             var result =  await _expenseService.CreateAsync(userId,dto);
-            return CreatedAtAction(nameof(GetById), new { id = result!.Id }, result);
+            if(result is null) return BadRequest("Invalid Category");
+            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
         catch(InvalidOperationException ex)
         {
@@ -67,7 +70,7 @@ public class ExpenseController : ControllerBase
     { 
         try
         {
-          var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+          var userId = GetUserId();
           var result = await _expenseService.UpdateAsync(id,userId,dto);
           if(result is null) return NotFound();
           return Ok(result);
@@ -80,13 +83,14 @@ public class ExpenseController : ControllerBase
     }
     
     [HttpDelete("{id}")]
-    public async Task<ActionResult<bool>> DeleteExpense(int id)
+    public async Task<ActionResult> DeleteExpense(int id)
     {
         try
         {
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            var userId = GetUserId();
             var result = await _expenseService.DeleteAsync(id,userId);
-            return Ok(result);
+            if(!result) return NotFound();
+            return NoContent();
         }
         catch(InvalidOperationException ex)
         {
