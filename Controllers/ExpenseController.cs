@@ -54,7 +54,7 @@ public class ExpenseController : ControllerBase
         {
             var userId =  int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             var result =  await _expenseService.CreateAsync(userId,dto);
-            return Ok(result);
+            return CreatedAtAction(nameof(GetById), new { id = result!.Id }, result);
         }
         catch(InvalidOperationException ex)
         {
