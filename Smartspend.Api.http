@@ -4,3 +4,199 @@ GET {{Smartspend.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+POST  http://localhost:5111/api/auth/register
+Content-Type: application/json
+
+{
+    "FirstName":"Qasim",
+    "Email":"mqakram2005@gmail.com",
+    "Password":"justacheck"
+}
+###
+POST http://localhost:5111/api/auth/Login
+Content-Type: application/json
+
+{
+    "Email":"mqakram2005@gmail.com",
+    "Password":"justacheck"
+}
+###
+GET  http://localhost:5111/api/expenses
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIyIiwiZW1haWwiOiJUZXN0VXNlckBlbWFpbC5jb20iLCJuYmYiOjE3OTI2MzUxNTEsImV4cCI6MTc5MzIzOTk1MSwiaWF0IjoxNzkyNjM1MTUxLCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.xI2I2eqn5e8Ppbl9QdNaMg7ePAZCHQ_UlEdB8QI9X8U
+###
+POST  http://localhost:5111/api/expenses
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzQ0MjAsImV4cCI6MTc5MzIzOTIyMCwiaWF0IjoxNzkyNjM0NDIwLCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.DzHMbjtlXVkPLXaQjSeu_X1eoM6OufVWlUf7DGmsFFQ
+Content-Type: application/json
+
+{
+     "Amount": 500,
+    "Description": "Lunch",
+    "Date": "2026-10-22",
+    "CategoryId": 1
+}
+
+###
+POST http://localhost:5111/api/auth/register
+Content-Type: application/json
+
+{
+    "FirstName":"TeatUser",
+    "Email":"TestUser@email.com",
+    "Password":"TestUser"
+}
+
+###
+@baseUrl = http://localhost:5111
+
+###############################
+# AUTH (public, no token)
+###############################
+
+### Register
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "FirstName": "Qasim",
+    "LastName": "Akram",
+    "Email": "test@gmail.com",
+    "Password": "justacheck"
+}
+
+### Login (named so other requests can reuse the token)
+# @name login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "Email": "test@gmail.com",
+    "Password": "justacheck"
+}
+
+###############################
+# TOKEN (run Login first)
+###############################
+@token = {{login.response.body.token}}
+
+###############################
+# CATEGORIES
+###############################
+
+### Get all categories (defaults + yours)
+GET {{baseUrl}}/api/categories
+Authorization: Bearer {{token}}
+
+### Get category by id
+GET {{baseUrl}}/api/categories/1
+Authorization: Bearer {{token}}
+
+### Create custom category
+POST {{baseUrl}}/api/categories
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Name": "Gaming"
+}
+
+### Update category (only your own custom ones)
+PUT {{baseUrl}}/api/categories/7
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Name": "Games"
+}
+
+### Delete category
+DELETE {{baseUrl}}/api/categories/7
+Authorization: Bearer {{token}}
+
+###############################
+# EXPENSES
+###############################
+
+### Get all expenses
+GET {{baseUrl}}/api/expense
+Authorization: Bearer {{token}}
+
+### Get expense by id
+GET {{baseUrl}}/api/expense/1
+Authorization: Bearer {{token}}
+
+### Create expense
+POST {{baseUrl}}/api/expense
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Amount": 500,
+    "Description": "Lunch",
+    "Date": "2026-10-22",
+    "CategoryId": 1
+}
+
+### Update expense
+PUT {{baseUrl}}/api/expense/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Amount": 750,
+    "Description": "Dinner",
+    "Date": "2026-10-22",
+    "CategoryId": 1
+}
+
+### Delete expense
+DELETE {{baseUrl}}/api/expense/1
+Authorization: Bearer {{token}}
+
+###############################
+# BUDGETS
+###############################
+
+### Get all budgets
+GET {{baseUrl}}/api/budgets
+Authorization: Bearer {{token}}
+
+### Get budget by id
+GET {{baseUrl}}/api/budgets/1
+Authorization: Bearer {{token}}
+
+### Create budget
+POST {{baseUrl}}/api/budgets
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Amount": 5000,
+    "CategoryId": 1,
+    "StartDate": "2026-10-01",
+    "EndDate": "2026-10-31"
+}
+
+### Update budget
+PUT {{baseUrl}}/api/budgets/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Amount": 6000,
+    "CategoryId": 1,
+    "StartDate": "2026-10-01",
+    "EndDate": "2026-10-31"
+}
+
+### Delete budget
+DELETE {{baseUrl}}/api/budgets/1
+Authorization: Bearer {{token}}
+
+###############################
+# REPORTS
+###############################
+
+### Report for a date range (query string)
+GET {{baseUrl}}/api/reports?startDate=2026-10-01&endDate=2026-10-31
+Authorization: Bearer {{token}}
