@@ -42,8 +42,8 @@ public class BudgetService : IBudgetService
         {
             Amount = dto.Amount,
             CategoryId = dto.CategoryId,
-            StartDate = dto.StartDate,
-            EndDate = dto.EndDate,
+            StartDate = dto.StartDate!.Value,
+            EndDate = dto.EndDate!.Value,
             UserId = userId
         };
         _dbcontext.Set<Budget>().Add(budget);
@@ -62,12 +62,12 @@ public class BudgetService : IBudgetService
         var category = await _dbcontext.Set<Category>()
                          .FirstOrDefaultAsync(c => c.Id == dto.CategoryId && (c.UserId == userId || c.IsDefault));
 
-        if(category is null)return null;
+        if(category is null) throw new InvalidOperationException("Invalid Category");
 
         oldbudget.Amount = dto.Amount;
         oldbudget.CategoryId = dto.CategoryId;
-        oldbudget.StartDate = dto.StartDate;
-        oldbudget.EndDate = dto.EndDate;
+        oldbudget.StartDate = dto.StartDate!.Value;
+        oldbudget.EndDate = dto.EndDate!.Value;
 
         await _dbcontext.SaveChangesAsync();
 

@@ -35,6 +35,6 @@ public class ReportService : IReportService
 
         var totalSpending = expenses.Sum(e => e.Amount);
 
-       return new ReportDto(totalSpending, dto.StartDate, dto.EndDate, categoryBreakdown );    
+       return new ReportDto(totalSpending, dto.StartDate!.Value, dto.EndDate!.Value, categoryBreakdown );    
     }
 }

@@ -40,7 +40,7 @@ public class ExpenseService : IExpenseService
             Amount = dto.Amount,
             Description = dto.Description,
             CategoryId = dto.CategoryId,
-            Date = dto.Date,
+            Date = dto.Date!.Value,
             UserId = userId
         };
 
@@ -58,7 +58,7 @@ public class ExpenseService : IExpenseService
         oldexpense.Amount = dto.Amount;
         oldexpense.Description = dto.Description;
         oldexpense.CategoryId  = dto.CategoryId;
-        oldexpense.Date = dto.Date;
+        oldexpense.Date = dto.Date!.Value;
         await _dbcontext.SaveChangesAsync();
 
         var category = await _dbcontext.Set<Category>()

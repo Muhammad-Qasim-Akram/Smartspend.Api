@@ -108,7 +108,7 @@ Content-Type: application/json
 }
 
 ### Delete category
-DELETE {{baseUrl}}/api/categories/9
+DELETE {{baseUrl}}/api/categories/11
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU1NTcsImV4cCI6MTc5MzI0MDM1NywiaWF0IjoxNzkyNjM1NTU3LCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.o6ZC2MdPVZ-d6Sub9ARLmFXnxHHEUMfIzv4RTp9e5Oo
 
 ###############################
@@ -132,7 +132,7 @@ Content-Type: application/json
     "Amount": 8000,
     "Description": "Gaming",
     "Date": "2026-10-22",
-    "CategoryId": 9
+    "CategoryId": 11
 }
 
 ### Update expense
@@ -170,7 +170,7 @@ Content-Type: application/json
 
 {
     "Amount": 6000,
-    "CategoryId": 3,
+    "CategoryId": 999,
     "StartDate": "2026-10-01",
     "EndDate": "2026-10-31"
 }

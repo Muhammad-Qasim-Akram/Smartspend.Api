@@ -8,5 +8,6 @@ public record ExpenseDto
     decimal Amount,
     string? Description,
     string CategoryName,
-    DateOnly Date
+    DateOnly Date,
+    bool BudgetExceeded
     );
