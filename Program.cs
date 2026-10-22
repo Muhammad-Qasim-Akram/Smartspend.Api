@@ -4,6 +4,7 @@ using System.Text;
 using Smartspend.Api.Data;
 using Smartspend.Api.Services;
 using SmartSpend.Api.Interfaces;
+using Smartspend.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,7 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+app.UseMiddleware<GlobalExceptionMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
