@@ -58,6 +58,11 @@ public class CategoryService: ICategoryService
 
     public async Task<bool> DeleteAsync(int id, int userId)
     {   
+        var inUse = await _dbcontext.Set<Expense>().AnyAsync(e => e.CategoryId == id && e.UserId == userId)
+         || await _dbcontext.Set<Budget>().AnyAsync(b => b.CategoryId == id && b.UserId == userId);
+
+        if (inUse)
+        throw new InvalidOperationException("Category is in use and cannot be deleted.");
         var row = await _dbcontext.Set<Category>().Where(c => (c.Id == id && c.UserId == userId)).ExecuteDeleteAsync();
         return row > 0;
     }

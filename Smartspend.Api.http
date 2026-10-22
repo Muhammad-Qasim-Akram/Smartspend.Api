@@ -108,8 +108,8 @@ Content-Type: application/json
 }
 
 ### Delete category
-DELETE {{baseUrl}}/api/categories/7
-Authorization: Bearer {{token}}
+DELETE {{baseUrl}}/api/categories/9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU1NTcsImV4cCI6MTc5MzI0MDM1NywiaWF0IjoxNzkyNjM1NTU3LCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.o6ZC2MdPVZ-d6Sub9ARLmFXnxHHEUMfIzv4RTp9e5Oo
 
 ###############################
 # EXPENSES
@@ -132,11 +132,11 @@ Content-Type: application/json
     "Amount": 8000,
     "Description": "Gaming",
     "Date": "2026-10-22",
-    "CategoryId": 1
+    "CategoryId": 9
 }
 
 ### Update expense
-PUT {{baseUrl}}/api/expense/1
+PUT {{baseUrl}}/api/expense/9
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -196,5 +196,5 @@ Authorization: Bearer {{token}}
 ###############################
 
 ### Report for a date range (query string)
-GET {{baseUrl}}/api/reports?startDate=2026-10-01&endDate=2026-10-31
+GET {{baseUrl}}/api/reports
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU1NTcsImV4cCI6MTc5MzI0MDM1NywiaWF0IjoxNzkyNjM1NTU3LCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.o6ZC2MdPVZ-d6Sub9ARLmFXnxHHEUMfIzv4RTp9e5Oo
