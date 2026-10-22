@@ -85,15 +85,13 @@ Content-Type: application/json
 
 ### Get all categories (defaults + yours)
 GET {{baseUrl}}/api/categories
-Authorization: Bearer {{token}}
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU1NTcsImV4cCI6MTc5MzI0MDM1NywiaWF0IjoxNzkyNjM1NTU3LCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.o6ZC2MdPVZ-d6Sub9ARLmFXnxHHEUMfIzv4RTp9e5Oo
 ### Get category by id
 GET {{baseUrl}}/api/categories/1
-Authorization: Bearer {{token}}
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU0NjEsImV4cCI6MTc5MzI0MDI2MSwiaWF0IjoxNzkyNjM1NDYxLCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.8xfnRF9yUCB41KS5yPtstZlVVjFKowgDKkWdDOaWJHo
 ### Create custom category
 POST {{baseUrl}}/api/categories
-Authorization: Bearer {{token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU1NTcsImV4cCI6MTc5MzI0MDM1NywiaWF0IjoxNzkyNjM1NTU3LCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.o6ZC2MdPVZ-d6Sub9ARLmFXnxHHEUMfIzv4RTp9e5Oo
 Content-Type: application/json
 
 {
@@ -102,7 +100,7 @@ Content-Type: application/json
 
 ### Update category (only your own custom ones)
 PUT {{baseUrl}}/api/categories/7
-Authorization: Bearer {{token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU1NTcsImV4cCI6MTc5MzI0MDM1NywiaWF0IjoxNzkyNjM1NTU3LCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.o6ZC2MdPVZ-d6Sub9ARLmFXnxHHEUMfIzv4RTp9e5Oo
 Content-Type: application/json
 
 {
@@ -126,13 +124,13 @@ GET {{baseUrl}}/api/expense/1
 Authorization: Bearer {{token}}
 
 ### Create expense
-POST {{baseUrl}}/api/expense
-Authorization: Bearer {{token}}
+POST {{baseUrl}}/api/expenses
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU1NTcsImV4cCI6MTc5MzI0MDM1NywiaWF0IjoxNzkyNjM1NTU3LCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.o6ZC2MdPVZ-d6Sub9ARLmFXnxHHEUMfIzv4RTp9e5Oo
 Content-Type: application/json
 
 {
-    "Amount": 500,
-    "Description": "Lunch",
+    "Amount": 8000,
+    "Description": "Gaming",
     "Date": "2026-10-22",
     "CategoryId": 1
 }
@@ -159,7 +157,7 @@ Authorization: Bearer {{token}}
 
 ### Get all budgets
 GET {{baseUrl}}/api/budgets
-Authorization: Bearer {{token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU1NTcsImV4cCI6MTc5MzI0MDM1NywiaWF0IjoxNzkyNjM1NTU3LCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.o6ZC2MdPVZ-d6Sub9ARLmFXnxHHEUMfIzv4RTp9e5Oo
 
 ### Get budget by id
 GET {{baseUrl}}/api/budgets/1
@@ -167,12 +165,12 @@ Authorization: Bearer {{token}}
 
 ### Create budget
 POST {{baseUrl}}/api/budgets
-Authorization: Bearer {{token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU1NTcsImV4cCI6MTc5MzI0MDM1NywiaWF0IjoxNzkyNjM1NTU3LCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.o6ZC2MdPVZ-d6Sub9ARLmFXnxHHEUMfIzv4RTp9e5Oo
 Content-Type: application/json
 
 {
-    "Amount": 5000,
-    "CategoryId": 1,
+    "Amount": 6000,
+    "CategoryId": 3,
     "StartDate": "2026-10-01",
     "EndDate": "2026-10-31"
 }
@@ -199,4 +197,4 @@ Authorization: Bearer {{token}}
 
 ### Report for a date range (query string)
 GET {{baseUrl}}/api/reports?startDate=2026-10-01&endDate=2026-10-31
-Authorization: Bearer {{token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJtcWFrcmFtMjAwNUBnbWFpbC5jb20iLCJuYmYiOjE3OTI2MzU1NTcsImV4cCI6MTc5MzI0MDM1NywiaWF0IjoxNzkyNjM1NTU3LCJpc3MiOiJTbWFydFNwZW5kIiwiYXVkIjoiU21hcnRTcGVuZFVzZXJzIn0.o6ZC2MdPVZ-d6Sub9ARLmFXnxHHEUMfIzv4RTp9e5Oo

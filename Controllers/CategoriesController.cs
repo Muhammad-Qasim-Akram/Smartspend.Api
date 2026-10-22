@@ -8,12 +8,12 @@ namespace Smartspend.Api.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("api/[Controller]")]
-public class CatergoriesController : ControllerBase
+[Route("api/[controller]")]
+public class CategoriesController : ControllerBase
 {
     private readonly ICategoryService _categoryService;
 
-    public CatergoriesController(ICategoryService categoryService)
+    public CategoriesController(ICategoryService categoryService)
     {
         _categoryService = categoryService;
     }
@@ -42,7 +42,6 @@ public class CatergoriesController : ControllerBase
     {
         var userId = GetUserId();
         var result = await _categoryService.CreateAsync(userId,dto);
-        if(result is null) return BadRequest("Invalid Category");
         return CreatedAtAction(nameof(GetById),new { id = result.Id},result);
     }
 
