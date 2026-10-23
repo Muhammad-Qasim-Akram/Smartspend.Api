@@ -76,6 +76,7 @@ public class BudgetService : IBudgetService
 
     public async Task<bool> DeleteAsync(int id,int userId)
     {
+        
         var row = await _dbcontext.Set<Budget>()
                    .Where(b => b.Id == id && b.UserId == userId)
                    .ExecuteDeleteAsync();

@@ -39,4 +39,5 @@ public class GlobalExceptionMiddleware
         var body = JsonSerializer.Serialize(new { error = message });
         await context.Response.WriteAsync(body);
     }
+
 }
