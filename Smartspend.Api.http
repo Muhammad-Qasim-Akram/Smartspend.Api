@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
     "Email":"mqakram2005@gmail.com",
-    "Password":"justacheck"
+    "Password":"justacheck1"
 }
 ###
 GET  http://localhost:5111/api/expenses
