@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Smartspend.Api.Exceptions;
 
 namespace Smartspend.Api.Middleware;
 
@@ -18,6 +19,14 @@ public class GlobalExceptionMiddleware
         try
         {
             await _next(context);
+        }
+        catch (ConflictException ex)
+        {
+            await WriteResponse(context, StatusCodes.Status409Conflict, ex.Message);
+        }
+        catch (UnauthorizedException ex)
+        {
+        await WriteResponse(context, StatusCodes.Status401Unauthorized, ex.Message);
         }
         catch (InvalidOperationException ex)
         {
