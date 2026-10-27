@@ -19,8 +19,11 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.23.0" />
   </ItemGroup>
 
+ 
   <ItemGroup>
-    <ProjectReference Include="Smartspend.Api.csproj" />
-  </ItemGroup>
+  <Compile Remove="Smartspend.Tests\**" />
+  <EmbeddedResource Remove="Smartspend.Tests\**" />
+  <None Remove="Smartspend.Tests\**" />
+</ItemGroup>
 
 </Project>
