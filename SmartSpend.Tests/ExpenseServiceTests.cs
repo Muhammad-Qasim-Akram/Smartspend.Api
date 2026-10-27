@@ -60,4 +60,42 @@ public class ExpenseServiceTests
         Assert.NotNull(result);
         Assert.True(result.BudgetExceeded);
     }
+ 
+    [Fact]
+    public async Task CreateAsync_NoBudget_ReturnsFalse()
+    {
+        // ARRANGE: put data into the fake database
+        var db = CreateContext();
+
+        db.Set<Category>().Add(new Category
+        {
+            Id = 1, Name = "Food", IsDefault = true
+        });
+
+    
+        db.Set<Expense>().Add(new Expense
+        {
+            Amount = 600,
+            CategoryId = 1,
+            UserId = 1,
+            Date = new DateOnly(2026, 10, 10)
+        });
+
+        await db.SaveChangesAsync();
+
+        var service = new ExpenseService(db);
+
+        // ACT: call the method we are testing (600 already spent, adding 500)
+        var result = await service.CreateAsync(
+            1,
+            new CreateExpenseDto(500, "Dinner", 1, new DateOnly(2026, 10, 22)));
+
+        // ASSERT: check the result
+        Assert.NotNull(result);
+        Assert.False(result.BudgetExceeded);
+    }
+
+
+
+
 }
