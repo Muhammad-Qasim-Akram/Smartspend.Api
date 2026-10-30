@@ -26,5 +26,4 @@
   <None Remove="SmartSpend.Tests\**" />
 </ItemGroup>
   
-
 </Project>
