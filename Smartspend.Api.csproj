@@ -25,5 +25,4 @@
   <EmbeddedResource Remove="SmartSpend.Tests\**" />
   <None Remove="SmartSpend.Tests\**" />
 </ItemGroup>
-  
 </Project>
