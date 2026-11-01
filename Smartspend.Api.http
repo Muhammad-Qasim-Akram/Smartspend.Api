@@ -74,6 +74,9 @@ Content-Type: application/json
     "Password": "justacheck"
 }
 
+### Current user (login first; uses the JWT cookie)
+GET {{baseUrl}}/api/auth/me
+
 ###############################
 # TOKEN (run Login first)
 ###############################

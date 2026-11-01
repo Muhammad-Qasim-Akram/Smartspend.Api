@@ -22,7 +22,8 @@ public class AuthService : IAuthService
         Subject = new ClaimsIdentity(new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email)
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.GivenName, user.FirstName)
         }),
         Expires = DateTime.UtcNow.AddDays(
             int.Parse(_configuration["JwtSettings:ExpiryDays"]!)),
